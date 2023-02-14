@@ -20,5 +20,20 @@ namespace MemberApp.Controllers
         {
             return View();
         }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]  //this is not required but good to have it and get to know what it does
+        public IActionResult Create(Item obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Items.Add(obj);
+                _db.SaveChanges();
+                TempData["succes"] = "Category succesfully created";
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }
