@@ -35,5 +35,33 @@ namespace MemberApp.Controllers
             }
             return View(obj);
         }
-    }
+        public IActionResult Delete(int id)
+        {
+            var itemFromDb = _db.Items.Find(id);
+
+            if (itemFromDb == null)
+            {
+                return NotFound();
+            }
+            _db.Items.Remove(itemFromDb);
+            _db.SaveChanges();
+            TempData["succes"] = "Item was succesfully deleted";
+            return RedirectToAction("Index");
+        }
+
+		public IActionResult Edit(int? id)
+		{
+			if (id == null || id == 0)
+			{
+				return NotFound();
+			}
+			var categoryFromDb = _db.Items.Find(id);
+
+			if (categoryFromDb == null)
+			{
+				return NotFound();
+			}
+			return View(categoryFromDb);
+		}
+	}
 }
