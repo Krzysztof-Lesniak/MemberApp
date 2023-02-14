@@ -2,6 +2,11 @@
 Shopping List App to (re)Member what to buy
 (Re)Member App - for rmember what to buy
  # Funcionalities
+ * Adding items to list
+ * Deleting Items to List
+ * Editing Items in list
+ * Creating an user
+ * Shering the list with a chosen User
  
  
 # Technologies
