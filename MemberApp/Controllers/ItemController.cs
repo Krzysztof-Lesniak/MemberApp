@@ -16,5 +16,9 @@ namespace MemberApp.Controllers
             IEnumerable<Item> objCategoryList = _db.Items.ToList();
             return View(objCategoryList);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
