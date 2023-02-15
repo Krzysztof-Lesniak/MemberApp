@@ -12,5 +12,6 @@ namespace MemberApp.Models
         [Required]
         public Category Category { get; set; }
         public string Description { get; set; } = "";
+        public int UserId { get; set; }
     }
 }
