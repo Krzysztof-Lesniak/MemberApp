@@ -14,6 +14,8 @@
             </a>
         </div>
     </div>
+@using (Html.BeginForm("Update", "Item", FormMethod.Post))
+{
 <table class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
@@ -24,25 +26,20 @@
                 Description
             </th>
              <th></th>
-             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
             {
             <tr>
-                <td width="20%">
-                    @item.Name
-                </td>
+                <td>@Html.Hidden("id", item.Id) @Html.TextBox("name", item.Name)</td>
                 <td>
                     @item.Description
+                        @{
+                            ViewBag.DataCellDescription = item.Description;
+                        }
                 </td>
-                <td>
-                    @*<div class="w-75 btn-group" role="group">
-                        <a asp-controller="Item" asp-action="Edit" asp-route-id=@item.Id>Edit</a>
-                    </div>*@
-                </td>
-                <td>
+                <td width="10%">
                      <div class="w-75" role="group">
                             <a asp-controller="Item" asp-action="Delete" asp-route-id=@item.Id>Delete</a>
                     </div>
@@ -51,7 +48,8 @@
             }
     </tbody>
 </table>
-
+    <input type="submit" value="Save Changes" />
+}
 
 
 </div>

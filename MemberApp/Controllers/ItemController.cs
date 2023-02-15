@@ -14,6 +14,9 @@ namespace MemberApp.Controllers
         public IActionResult Index()
         {
             IEnumerable<Item> objCategoryList = _db.Items.ToList();
+            string dataCellName = string.Empty;
+            string dataCellDescription = string.Empty;
+
             return View(objCategoryList);
         }
         public IActionResult Create()
@@ -48,20 +51,17 @@ namespace MemberApp.Controllers
             TempData["succes"] = "Item was succesfully deleted";
             return RedirectToAction("Index");
         }
-
-		public IActionResult Edit(int? id)
-		{
-			if (id == null || id == 0)
-			{
-				return NotFound();
-			}
-			var categoryFromDb = _db.Items.Find(id);
-
-			if (categoryFromDb == null)
-			{
-				return NotFound();
-			}
-			return View(categoryFromDb);
-		}
-	}
+        [HttpPost]
+        public ActionResult Update(int id, string name, string description)
+        {
+            Item model = _db.Items.Find(id);
+            if (model != null)
+            {
+                model.Name = name;
+                model.Description = description;
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+    }
 }
