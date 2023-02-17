@@ -11,6 +11,6 @@ namespace MemberApp.Models
         public string Name { get; set; }
         [Required]
         public Category Category { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
     }
 }

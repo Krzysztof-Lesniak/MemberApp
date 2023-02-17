@@ -3,3 +3,53 @@
     ViewData["Title"] = "Index";
 }
 
+<div "class=container p-3">
+    <div class="row pt-4">
+        <div class="cl-6">
+        <h2 class="text-primary text-center">Item List</h2>
+        </div>
+        <div class="cl-6" >
+            <a asp-controller="Item" asp-action="Create" class="btn btn-primary">
+                Add new item
+            </a>
+        </div>
+    </div>
+@using (Html.BeginForm("Update", "Item", FormMethod.Post))
+{
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th width="20%">
+                Item name
+            </th>
+            <th>
+                Description
+            </th>
+             <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.Hidden("id", item.Id) @Html.TextBox("name", item.Name)</td>
+                <td>
+                    @item.Description
+                        @{
+                            ViewBag.DataCellDescription = item.Description;
+                        }
+                </td>
+                <td width="10%">
+                     <div class="w-75" role="group">
+                            <a asp-controller="Item" asp-action="Delete" asp-route-id=@item.Id>Delete</a>
+                    </div>
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>
+    <input type="submit" value="Save Changes" />
+}
+
+
+</div>
