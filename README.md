@@ -13,3 +13,5 @@ Shopping List App to (re)Member what to buy
 * MVC
 * Entity Framework
 * Sql Server
+
+Work in progress
